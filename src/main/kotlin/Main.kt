@@ -9,9 +9,13 @@ import java.awt.GridLayout
 import java.awt.GridBagLayout
 import java.awt.GridBagConstraints
 import java.awt.Insets
+import javax.swing.SwingUtilities
 
 fun main() {
-    faerieChessCounterGUI()
+    //not sure why but the SwingUtilites.invokeLater seems to have solved the initialization bug
+    SwingUtilities.invokeLater {
+        faerieChessCounterGUI()
+    }
 }
 
 private fun faerieChessCounterGUI() {
@@ -42,6 +46,7 @@ private fun faerieChessCounterGUI() {
     val soldierDropdown = createDropdown(listOf(0, 1, 2))
     contentPane.add(soldierDropdown, createGridBagConstraints(1, gridY))
 
+    //updates how many pieces you have left to select for rank I pieces
     fun updateRank1PiecesLabel() {
         val pawnValue = pawnDropdown.selectedItem as Int
         val peasantValue = peasantDropdown.selectedItem as Int
@@ -115,7 +120,7 @@ private fun faerieChessCounterGUI() {
     addLabel(contentPane, "Tower:", 2, ++gridY)
     val towerDropdown = createDropdown(listOf(0, 1))
     contentPane.add(towerDropdown, createGridBagConstraints(3, gridY))
-
+    //updates how many pieces you have left to select for rank II pieces
     fun updateRank2PiecesLabel() {
         val rookValue = rookDropdown.selectedItem as Int
         val bishopValue = bishopDropdown.selectedItem as Int
@@ -194,7 +199,7 @@ private fun faerieChessCounterGUI() {
     addLabel(contentPane, "Regent:", 4, ++gridY)
     val regentDropdown = createDropdown(listOf(0, 1))
     contentPane.add(regentDropdown, createGridBagConstraints(5, gridY))
-
+    //updates how many pieces you have left to select for rank III pieces
     fun updateRank3PiecesLabel() {
         val queenValue = queenDropdown.selectedItem as Int
         val kingValue = kingDropdown.selectedItem as Int
@@ -216,6 +221,7 @@ private fun faerieChessCounterGUI() {
     regentDropdown.addActionListener{
         updateRank3PiecesLabel()
     }
+
     //difficulty
     addLabel(contentPane, "Difficulty:", 0, 15)
     val difficultyDropdown = createDropdown(listOf("Beginner", "Intermediate", "Advanced"))
@@ -250,7 +256,6 @@ private fun faerieChessCounterGUI() {
         )
         val selectedDifficulty = difficultyDropdown.selectedItem as String
         val remainingPoints = difficulties[selectedDifficulty]!! - totalPoints
-        //!! will never be null
         val result = "Total points: $totalPoints\n Remaining points: $remainingPoints"
 
         resultLabel.text = result
@@ -261,32 +266,34 @@ private fun faerieChessCounterGUI() {
     frame.pack()
     frame.isVisible = true
 }
-
+//will create the new JLabel provided a string and coordinates
 private fun addLabel(
     container: Container,
     labelText: String,
     gridX: Int,
-    gridY: Int
-) {
+    gridY: Int) {
     val label = JLabel(labelText)
     val constraints = createGridBagConstraints(gridX, gridY)
     container.add(label, constraints)
 }
-
+//will create a dropdown provided a list
 private fun createDropdown(items: List<Any>): JComboBox<Any> {
+    //toTypedArray will convert a list of elements into an array of the right type
     val comboBox = JComboBox(items.toTypedArray())
     comboBox.selectedIndex = 0
     return comboBox
 }
-
+//allows me to create consistent components to manage the layout of the application
 private fun createGridBagConstraints(gridX: Int, gridY: Int, gridWidth: Int = 1, gridHeight: Int = 1): GridBagConstraints {
     val constraints = GridBagConstraints()
     constraints.gridx = gridX
     constraints.gridy = gridY
     constraints.gridwidth = gridWidth
     constraints.gridheight = gridHeight
+    //anchor point set to the left
     constraints.anchor = GridBagConstraints.WEST
     constraints.fill = GridBagConstraints.HORIZONTAL
+    //sets padding around the components
     constraints.insets = Insets(5, 5, 5, 5)
     return constraints
 }
