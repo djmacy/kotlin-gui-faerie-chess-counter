@@ -25,7 +25,7 @@ private fun faerieChessCounterGUI() {
 
     //rank I
     val rank1PieceCountLabel = JLabel("Rank I Pieces Left: 4")
-    contentPane.add(rank1PieceCountLabel, createGridBagConstraints(0, 5, 2, 1))
+    contentPane.add(rank1PieceCountLabel, createGridBagConstraints(0, 4, 2, 1))
 
     var gridY = 0
     addLabel(contentPane, "Rank I selection:", 0, gridY)
@@ -62,6 +62,9 @@ private fun faerieChessCounterGUI() {
 
 
     //rank II
+    val rank2PieceCountLabel = JLabel("Rank II Pieces Left: 6")
+    contentPane.add(rank2PieceCountLabel, createGridBagConstraints(2, 14, 2, 1))
+
     gridY = 0
     addLabel(contentPane, "Rank II selection:", 2, gridY)
 
@@ -113,7 +116,66 @@ private fun faerieChessCounterGUI() {
     val towerDropdown = createDropdown(listOf(0, 1))
     contentPane.add(towerDropdown, createGridBagConstraints(3, gridY))
 
+    fun updateRank2PiecesLabel() {
+        val rookValue = rookDropdown.selectedItem as Int
+        val bishopValue = bishopDropdown.selectedItem as Int
+        val knightValue = knightDropdown.selectedItem as Int
+        val chamberlainValue = chamberlainDropdown.selectedItem as Int
+        val courtesanValue = courtesanDropdown.selectedItem as Int
+        val catapultValue = catapultDropdown.selectedItem as Int
+        val heraldValue = heraldDropdown.selectedItem as Int
+        val inquisitorValue = inquisitorDropdown.selectedItem as Int
+        val lancerValue = lancerDropdown.selectedItem as Int
+        val pontiffValue = pontiffDropdown.selectedItem as Int
+        val thiefValue = thiefDropdown.selectedItem as Int
+        val towerValue = towerDropdown.selectedItem as Int
+        val totalRank1Pieces = rookValue + bishopValue + knightValue + chamberlainValue +
+                catapultValue + courtesanValue + heraldValue + inquisitorValue + lancerValue +
+                pontiffValue + thiefValue + towerValue
+        rank2PieceCountLabel.text = "Rank II Pieces left: ${6 - totalRank1Pieces}"
+    }
+
+    rookDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    bishopDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    knightDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    catapultDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    courtesanDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    chamberlainDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    heraldDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    inquisitorDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    lancerDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    pontiffDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    thiefDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+    towerDropdown.addActionListener{
+        updateRank2PiecesLabel()
+    }
+
     //rank III
+    val rank3PieceCountLabel = JLabel("Rank III Pieces Left: 2")
+    contentPane.add(rank3PieceCountLabel, createGridBagConstraints(4, 5, 2, 1))
+
     gridY = 0
     addLabel(contentPane, "Rank III selection:", 4, gridY)
 
@@ -133,6 +195,27 @@ private fun faerieChessCounterGUI() {
     val regentDropdown = createDropdown(listOf(0, 1))
     contentPane.add(regentDropdown, createGridBagConstraints(5, gridY))
 
+    fun updateRank3PiecesLabel() {
+        val queenValue = queenDropdown.selectedItem as Int
+        val kingValue = kingDropdown.selectedItem as Int
+        val jesterValue = jesterDropdown.selectedItem as Int
+        val regentValue = regentDropdown.selectedItem as Int
+        val totalRank1Pieces = queenValue + kingValue + jesterValue + regentValue
+        rank3PieceCountLabel.text = "Rank III Pieces left: ${2 - totalRank1Pieces}"
+    }
+
+    queenDropdown.addActionListener{
+        updateRank3PiecesLabel()
+    }
+    kingDropdown.addActionListener{
+        updateRank3PiecesLabel()
+    }
+    jesterDropdown.addActionListener{
+        updateRank3PiecesLabel()
+    }
+    regentDropdown.addActionListener{
+        updateRank3PiecesLabel()
+    }
     //difficulty
     addLabel(contentPane, "Difficulty:", 0, 15)
     val difficultyDropdown = createDropdown(listOf("Beginner", "Intermediate", "Advanced"))
