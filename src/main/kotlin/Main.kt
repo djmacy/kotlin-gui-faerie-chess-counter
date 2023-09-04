@@ -43,9 +43,9 @@ private fun faerieChessCounterGUI() {
     contentPane.add(soldierDropdown, createGridBagConstraints(1, gridY))
 
     fun updateRank1PiecesLabel() {
-        val pawnValue = pawnDropdown.selectedItem as? Int ?: 0
-        val peasantValue = peasantDropdown.selectedItem as? Int ?: 0
-        val soldierValue = soldierDropdown.selectedItem as? Int ?: 0
+        val pawnValue = pawnDropdown.selectedItem as Int
+        val peasantValue = peasantDropdown.selectedItem as Int
+        val soldierValue = soldierDropdown.selectedItem as Int
         val totalRank1Pieces = pawnValue + peasantValue + soldierValue
         rank1PieceCountLabel.text = "Rank I Pieces left: ${8 - totalRank1Pieces}"
     }
