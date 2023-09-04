@@ -116,9 +116,16 @@ private fun faerieChessCounterGUI() {
     val difficultyDropdown = createDropdown(listOf("Beginner", "Intermediate", "Advanced"))
     contentPane.add(difficultyDropdown, createGridBagConstraints(1, 15))
 
+    val resultLabel = JLabel()
+    contentPane.add(resultLabel, createGridBagConstraints(0, 17, 2, 1))
+    //result label
+    frame.contentPane = contentPane
+    frame.pack()
+    frame.isVisible = true
     //calculate button
     val calculateButton = JButton("Calculate Points")
     calculateButton.addActionListener {
+        resultLabel.text = null
         val totalPoints =
             (pawnDropdown.selectedItem as Int) * 1 + (peasantDropdown.selectedItem as Int) * 2 +
                     (soldierDropdown.selectedItem as Int) * 3 + (rookDropdown.selectedItem as Int) * 9 +
@@ -139,15 +146,8 @@ private fun faerieChessCounterGUI() {
         val selectedDifficulty = difficultyDropdown.selectedItem as String
         val remainingPoints = difficulties[selectedDifficulty]!! - totalPoints
         //!! will never be null
-        val result = "Total points: $totalPoints\nRemaining points: $remainingPoints"
+        val result = "Total points: $totalPoints\n Remaining points: $remainingPoints"
 
-        //result label
-        val resultLabel = JLabel()
-        contentPane.add(resultLabel, createGridBagConstraints(0, 17, 2, 1))
-
-        frame.contentPane = contentPane
-        frame.pack()
-        frame.isVisible = true
         resultLabel.text = result
     }
 
