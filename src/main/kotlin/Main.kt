@@ -24,6 +24,9 @@ private fun faerieChessCounterGUI() {
     contentPane.layout = GridBagLayout()
 
     //rank I
+    val rank1PieceCountLabel = JLabel("Rank I Pieces Left: 4")
+    contentPane.add(rank1PieceCountLabel, createGridBagConstraints(0, 5, 2, 1))
+
     var gridY = 0
     addLabel(contentPane, "Rank I selection:", 0, gridY)
 
@@ -38,6 +41,25 @@ private fun faerieChessCounterGUI() {
     addLabel(contentPane, "Soldiers:", 0, ++gridY)
     val soldierDropdown = createDropdown(listOf(0, 1, 2))
     contentPane.add(soldierDropdown, createGridBagConstraints(1, gridY))
+
+    fun updateRank1PiecesLabel() {
+        val pawnValue = pawnDropdown.selectedItem as? Int ?: 0
+        val peasantValue = peasantDropdown.selectedItem as? Int ?: 0
+        val soldierValue = soldierDropdown.selectedItem as? Int ?: 0
+        val totalRank1Pieces = pawnValue + peasantValue + soldierValue
+        rank1PieceCountLabel.text = "Rank I Pieces left: ${8 - totalRank1Pieces}"
+    }
+
+    pawnDropdown.addActionListener{
+        updateRank1PiecesLabel()
+    }
+    peasantDropdown.addActionListener{
+        updateRank1PiecesLabel()
+    }
+    soldierDropdown.addActionListener{
+        updateRank1PiecesLabel()
+    }
+
 
     //rank II
     gridY = 0
