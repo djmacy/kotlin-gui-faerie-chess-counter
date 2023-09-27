@@ -178,49 +178,20 @@ private fun faerieChessCounterGUI() {
     }
 
     //rank III
-    val rank3PieceCountLabel = JLabel("Rank III Pieces Left: 2")
+    val rank3PieceCountLabel = JLabel("Rank III Pieces Left: 0")
     contentPane.add(rank3PieceCountLabel, createGridBagConstraints(4, 5, 2, 1))
 
     gridY = 0
     addLabel(contentPane, "Rank III selection:", 4, gridY)
 
-    addLabel(contentPane, "Queen:", 4, ++gridY)
-    val queenDropdown = createDropdown(listOf(0, 1))
+    addLabel(contentPane, "Queen or Jester:", 4, ++gridY)
+    val queenDropdown = createDropdown(listOf("Queen", "Jester"))
     contentPane.add(queenDropdown, createGridBagConstraints(5, gridY))
 
-    addLabel(contentPane, "King:", 4, ++gridY)
-    val kingDropdown = createDropdown(listOf(0, 1))
+    addLabel(contentPane, "King or Regent:", 4, ++gridY)
+    val kingDropdown = createDropdown(listOf("King", "Regent"))
     contentPane.add(kingDropdown, createGridBagConstraints(5, gridY))
 
-    addLabel(contentPane, "Jester:", 4, ++gridY)
-    val jesterDropdown = createDropdown(listOf(0, 1))
-    contentPane.add(jesterDropdown, createGridBagConstraints(5, gridY))
-
-    addLabel(contentPane, "Regent:", 4, ++gridY)
-    val regentDropdown = createDropdown(listOf(0, 1))
-    contentPane.add(regentDropdown, createGridBagConstraints(5, gridY))
-    //updates how many pieces you have left to select for rank III pieces
-    fun updateRank3PiecesLabel() {
-        val queenValue = queenDropdown.selectedItem as Int
-        val kingValue = kingDropdown.selectedItem as Int
-        val jesterValue = jesterDropdown.selectedItem as Int
-        val regentValue = regentDropdown.selectedItem as Int
-        val totalRank1Pieces = queenValue + kingValue + jesterValue + regentValue
-        rank3PieceCountLabel.text = "Rank III Pieces left: ${2 - totalRank1Pieces}"
-    }
-
-    queenDropdown.addActionListener{
-        updateRank3PiecesLabel()
-    }
-    kingDropdown.addActionListener{
-        updateRank3PiecesLabel()
-    }
-    jesterDropdown.addActionListener{
-        updateRank3PiecesLabel()
-    }
-    regentDropdown.addActionListener{
-        updateRank3PiecesLabel()
-    }
 
     //difficulty
     addLabel(contentPane, "Difficulty:", 0, 15)
@@ -237,6 +208,8 @@ private fun faerieChessCounterGUI() {
     val calculateButton = JButton("Calculate Points")
     calculateButton.addActionListener {
         resultLabel.text = null
+        var kingOrRegent = if (kingDropdown.selectedItem == "King") 0 else 12
+        var queenOrJester = if (queenDropdown.selectedItem == "Queen") 12 else 12
         val totalPoints =
             (pawnDropdown.selectedItem as Int) * 1 + (peasantDropdown.selectedItem as Int) * 2 +
                     (soldierDropdown.selectedItem as Int) * 3 + (rookDropdown.selectedItem as Int) * 9 +
@@ -245,9 +218,7 @@ private fun faerieChessCounterGUI() {
                     (courtesanDropdown.selectedItem as Int) * 6 + (heraldDropdown.selectedItem as Int) * 6 +
                     (inquisitorDropdown.selectedItem as Int) * 8 + (lancerDropdown.selectedItem as Int) * 5 +
                     (pontiffDropdown.selectedItem as Int) * 8 + (thiefDropdown.selectedItem as Int) * 5 +
-                    (towerDropdown.selectedItem as Int) * 10 + (queenDropdown.selectedItem as Int) * 12 +
-                    (kingDropdown.selectedItem as Int) * 0 + (jesterDropdown.selectedItem as Int) * 12 +
-                    (regentDropdown.selectedItem as Int) * 15
+                    (towerDropdown.selectedItem as Int) * 10 + kingOrRegent + queenOrJester
 
         val difficulties = mapOf(
             "Beginner" to 65,
