@@ -425,7 +425,33 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         knightDropdown.addActionListener{
             updateRank2PiecesLabel()
         }
-
+        catapultDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
+        courtesanDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
+        chamberlainDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
+        heraldDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
+        inquisitorDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
+        lancerDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
+        pontiffDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
+        thiefDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
+        towerDropdown.addActionListener{
+            updateRank2PiecesLabel()
+        }
         calculateButton.addActionListener{
             calculatePoints()
         }
@@ -458,15 +484,17 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         rank2PieceCountLabel.text = "Rank II Pieces left: ${6 - totalRank1Pieces}"
     }
     fun calculatePoints() {
+        var kingOrRegent = if (kingOrRegentDropdown.selectedItem == "King") 0 else 12
+        var queenOrJester = if (queenOrJesterDropdown.selectedItem == "Queen") 12 else 12
         val totalPoints =
             (pawnDropdown.selectedItem as Int) * 1 + (peasantDropdown.selectedItem as Int) * 2 +
                     (soldierDropdown.selectedItem as Int) * 3 + (rookDropdown.selectedItem as Int) * 9 +
-                    (knightDropdown.selectedItem as Int) * 4 + (bishopDropdown.selectedItem as Int) * 6/* +
+                    (knightDropdown.selectedItem as Int) * 4 + (bishopDropdown.selectedItem as Int) * 6 +
                     (catapultDropdown.selectedItem as Int) * 3 + (chamberlainDropdown.selectedItem as Int) * 6 +
                     (courtesanDropdown.selectedItem as Int) * 6 + (heraldDropdown.selectedItem as Int) * 6 +
                     (inquisitorDropdown.selectedItem as Int) * 8 + (lancerDropdown.selectedItem as Int) * 5 +
                     (pontiffDropdown.selectedItem as Int) * 8 + (thiefDropdown.selectedItem as Int) * 5 +
-                    (towerDropdown.selectedItem as Int) * 10 + kingOrRegent + queenOrJester*/
+                    (towerDropdown.selectedItem as Int) * 10 + kingOrRegent + queenOrJester
 
         val difficulties = mapOf(
             "Beginner" to 65,
