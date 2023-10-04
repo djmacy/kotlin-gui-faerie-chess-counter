@@ -257,10 +257,17 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
     private val bishopLabel = JLabel("Bishop:")
     private val rank2PieceCountLabel = JLabel("Rank II Pieces Left: 6")
 
+    private val rank3Label = JLabel("Rank III Selection")
+    private val queenOrJesterDropdown = createDropdown(listOf("Queen", "Jester"))
+    private val kingOrRegent = createDropdown(listOf("King", "Regent"))
+    private val queenOrJesterLabel = JLabel("Queen or Jester:")
+    private val kingOrRegentLabel = JLabel("King or Regent:")
+    private val rank3PieceCountLabel = JLabel("Rank II Pieces Left: 0")
+
     private val difficultyLabel = JLabel("Difficulty: ")
     private val difficultyDropdown = createDropdown(listOf("Beginner", "Intermediate", "Advanced"))
-    private val calculateButton = JButton("Calculate: ")
-    private val resultLabel = JLabel("Points Selected: ")
+    private val calculateButton = JButton("Calculate")
+    private val resultLabel = JLabel()
     private val contentPane = JPanel()
 
     init {
@@ -301,7 +308,7 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         contentPane.add(pawnDropdown)
         contentPane.add(peasantDropdown)
         contentPane.add(soldierDropdown)
-        //rank II
+        //Rank II
         rank2Label.setBounds(250, 10, 100, 20)
 
         rookLabel.setBounds(250, 40, 100, 20)
@@ -323,15 +330,18 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         contentPane.add(knightDropdown)
         contentPane.add(bishopLabel)
         contentPane.add(bishopDropdown)
+        //Rank III
 
+        //Other components
         difficultyLabel.setBounds(10, 240, 100, 20)
         difficultyDropdown.setBounds(120, 240, 100, 20)
         calculateButton.setBounds(10,270,200,20)
-        resultLabel.setBounds(10, 300, 200, 20)
+        resultLabel.setBounds(10, 300, 220, 20)
 
-        contentPane.add(resultLabel)
-        contentPane.add(calculateButton)
+        contentPane.add(difficultyLabel)
         contentPane.add(difficultyDropdown)
+        contentPane.add(calculateButton)
+        contentPane.add(resultLabel)
     }
 
     private fun setupListeners() {
@@ -387,7 +397,27 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         rank2PieceCountLabel.text = "Rank II Pieces left: ${6 - totalRank1Pieces}"
     }
     fun calculatePoints() {
+        val totalPoints =
+            (pawnDropdown.selectedItem as Int) * 1 + (peasantDropdown.selectedItem as Int) * 2 +
+                    (soldierDropdown.selectedItem as Int) * 3 + (rookDropdown.selectedItem as Int) * 9 +
+                    (knightDropdown.selectedItem as Int) * 4 + (bishopDropdown.selectedItem as Int) * 6/* +
+                    (catapultDropdown.selectedItem as Int) * 3 + (chamberlainDropdown.selectedItem as Int) * 6 +
+                    (courtesanDropdown.selectedItem as Int) * 6 + (heraldDropdown.selectedItem as Int) * 6 +
+                    (inquisitorDropdown.selectedItem as Int) * 8 + (lancerDropdown.selectedItem as Int) * 5 +
+                    (pontiffDropdown.selectedItem as Int) * 8 + (thiefDropdown.selectedItem as Int) * 5 +
+                    (towerDropdown.selectedItem as Int) * 10 + kingOrRegent + queenOrJester*/
 
+        val difficulties = mapOf(
+            "Beginner" to 65,
+            "Intermediate" to 70,
+            "Advanced" to 75
+        )
+
+        val selectedDifficulty = difficultyDropdown.selectedItem as String
+        val remainingPoints = difficulties[selectedDifficulty]!! - totalPoints
+        val result = "Total points: $totalPoints\n Remaining points: $remainingPoints"
+
+        resultLabel.text = result
     }
 
     private fun createDropdown(items: List<Any>): JComboBox<Any> {
