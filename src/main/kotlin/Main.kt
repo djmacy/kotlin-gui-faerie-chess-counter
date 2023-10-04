@@ -247,19 +247,36 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
     private val soldierLabel = JLabel("Soldiers:")
     private val rank1PieceCountLabel = JLabel("Rank I Pieces Left: 4")
 
-
     private val rank2Label = JLabel("Rank II Selection")
     private val rookDropdown = createDropdown(listOf(0, 1, 2))
     private val knightDropdown = createDropdown(listOf(0, 1, 2))
     private val bishopDropdown = createDropdown(listOf(0, 1, 2))
+    private val catapultDropdown = createDropdown(listOf(0, 1))
+    private val chamberlainDropdown = createDropdown(listOf(0, 1))
+    private val courtesanDropdown = createDropdown(listOf(0, 1))
+    private val heraldDropdown = createDropdown(listOf(0, 1))
+    private val inquisitorDropdown = createDropdown(listOf(0, 1))
+    private val lancerDropdown = createDropdown(listOf(0, 1))
+    private val pontiffDropdown = createDropdown(listOf(0, 1))
+    private val thiefDropdown = createDropdown(listOf(0, 1))
+    private val towerDropdown = createDropdown(listOf(0, 1))
     private val rookLabel = JLabel("Rooks:")
     private val knightLabel = JLabel("Knights:")
     private val bishopLabel = JLabel("Bishop:")
+    private val catapultLabel = JLabel("Catapult:")
+    private val chamberlainLabel = JLabel("Chamberlain:")
+    private val courtesanLabel = JLabel("Courtesan:")
+    private val heraldLabel = JLabel("Herald:")
+    private val inquisitorLabel = JLabel("Inquisitor:")
+    private val lancerLabel = JLabel("Lancer:")
+    private val pontiffLabel = JLabel("Pontiff:")
+    private val thiefLabel = JLabel("Thief:")
+    private val towerLabel = JLabel("Tower:")
     private val rank2PieceCountLabel = JLabel("Rank II Pieces Left: 6")
 
     private val rank3Label = JLabel("Rank III Selection")
     private val queenOrJesterDropdown = createDropdown(listOf("Queen", "Jester"))
-    private val kingOrRegent = createDropdown(listOf("King", "Regent"))
+    private val kingOrRegentDropdown = createDropdown(listOf("King", "Regent"))
     private val queenOrJesterLabel = JLabel("Queen or Jester:")
     private val kingOrRegentLabel = JLabel("King or Regent:")
     private val rank3PieceCountLabel = JLabel("Rank II Pieces Left: 0")
@@ -309,18 +326,32 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         contentPane.add(peasantDropdown)
         contentPane.add(soldierDropdown)
         //Rank II
-        rank2Label.setBounds(250, 10, 100, 20)
-
-        rookLabel.setBounds(250, 40, 100, 20)
-        rookDropdown.setBounds(310, 40,100,20)
-
-        knightLabel.setBounds(250, 70, 100,20)
-        knightDropdown.setBounds(310, 70,100,20)
-
-        bishopLabel.setBounds(250, 100, 100,20)
-        bishopDropdown.setBounds(310, 100,100,20)
-
-        rank2PieceCountLabel.setBounds(250, 300, 200, 20)
+        rank2Label.setBounds(320, 10, 100, 20)
+        rookLabel.setBounds(320, 40, 100, 20)
+        rookDropdown.setBounds(385, 40,100,20)
+        knightLabel.setBounds(320, 70, 100,20)
+        knightDropdown.setBounds(385, 70,100,20)
+        bishopLabel.setBounds(320, 100, 100,20)
+        bishopDropdown.setBounds(385, 100,100,20)
+        catapultLabel.setBounds(320, 130, 100,20)
+        catapultDropdown.setBounds(385, 130,100,20)
+        courtesanLabel.setBounds(320, 160, 100,20)
+        courtesanDropdown.setBounds(385, 160,100,20)
+        chamberlainLabel.setBounds(320, 190, 100,20)
+        chamberlainDropdown.setBounds(385, 190,100,20)
+        heraldLabel.setBounds(320, 220, 100,20)
+        heraldDropdown.setBounds(385, 220,100,20)
+        inquisitorLabel.setBounds(320, 250, 100,20)
+        inquisitorDropdown.setBounds(385, 250,100,20)
+        lancerLabel.setBounds(320, 280, 100,20)
+        lancerDropdown.setBounds(385, 280,100,20)
+        pontiffLabel.setBounds(320, 310, 100,20)
+        pontiffDropdown.setBounds(385, 310,100,20)
+        thiefLabel.setBounds(320, 340, 100,20)
+        thiefDropdown.setBounds(385, 340,100,20)
+        towerLabel.setBounds(320, 370, 100,20)
+        towerDropdown.setBounds(385, 370,100,20)
+        rank2PieceCountLabel.setBounds(320, 400, 200, 20)
 
         contentPane.add(rank2Label)
         contentPane.add(rank2PieceCountLabel)
@@ -330,7 +361,38 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         contentPane.add(knightDropdown)
         contentPane.add(bishopLabel)
         contentPane.add(bishopDropdown)
+        contentPane.add(chamberlainDropdown)
+        contentPane.add(catapultDropdown)
+        contentPane.add(courtesanDropdown)
+        contentPane.add(heraldDropdown)
+        contentPane.add(inquisitorDropdown)
+        contentPane.add(lancerDropdown)
+        contentPane.add(pontiffDropdown)
+        contentPane.add(thiefDropdown)
+        contentPane.add(towerDropdown)
+        contentPane.add(chamberlainLabel)
+        contentPane.add(courtesanLabel)
+        contentPane.add(catapultLabel)
+        contentPane.add(heraldLabel)
+        contentPane.add(inquisitorLabel)
+        contentPane.add(lancerLabel)
+        contentPane.add(pontiffLabel)
+        contentPane.add(thiefLabel)
+        contentPane.add(towerLabel)
         //Rank III
+        rank3Label.setBounds(565,10,100,20)
+        queenOrJesterLabel.setBounds(565, 40,100,20)
+        queenOrJesterDropdown.setBounds(675,40,100,20)
+        kingOrRegentLabel.setBounds(565,70,100,20)
+        kingOrRegentDropdown.setBounds(675,70,100,20)
+        rank3PieceCountLabel.setBounds(565,100,200,20)
+
+        contentPane.add(rank3Label)
+        contentPane.add(queenOrJesterLabel)
+        contentPane.add(queenOrJesterDropdown)
+        contentPane.add(kingOrRegentLabel)
+        contentPane.add(kingOrRegentDropdown)
+        contentPane.add(rank3PieceCountLabel)
 
         //Other components
         difficultyLabel.setBounds(10, 240, 100, 20)
@@ -379,7 +441,6 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         val rookValue = rookDropdown.selectedItem as Int
         val bishopValue = bishopDropdown.selectedItem as Int
         val knightValue = knightDropdown.selectedItem as Int
-        /*
         val chamberlainValue = chamberlainDropdown.selectedItem as Int
         val courtesanValue = courtesanDropdown.selectedItem as Int
         val catapultValue = catapultDropdown.selectedItem as Int
@@ -389,11 +450,11 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         val pontiffValue = pontiffDropdown.selectedItem as Int
         val thiefValue = thiefDropdown.selectedItem as Int
         val towerValue = towerDropdown.selectedItem as Int
-        */
 
-        val totalRank1Pieces = rookValue + bishopValue + knightValue/* + chamberlainValue +
+
+        val totalRank1Pieces = rookValue + bishopValue + knightValue + chamberlainValue +
                 catapultValue + courtesanValue + heraldValue + inquisitorValue + lancerValue +
-                pontiffValue + thiefValue + towerValue*/
+                pontiffValue + thiefValue + towerValue
         rank2PieceCountLabel.text = "Rank II Pieces left: ${6 - totalRank1Pieces}"
     }
     fun calculatePoints() {
