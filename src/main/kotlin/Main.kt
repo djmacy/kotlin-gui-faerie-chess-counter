@@ -78,8 +78,7 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
     private val beginnerPoints = 60
     private val intermediatePoints = 65
     private val advancedPoints = 70
-    private val calculateButton = JButton("Calculate")
-    private val resultLabel = JLabel()
+    private val resultLabel = JLabel("Total points: 16 Remaining Points: 44")
     private val contentPane = JPanel()
 
     init {
@@ -192,62 +191,78 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         //Other components
         difficultyLabel.setBounds(10, 240, 100, 20)
         difficultyDropdown.setBounds(120, 240, 100, 20)
-        calculateButton.setBounds(10,270,200,20)
         resultLabel.setBounds(10, 300, 220, 20)
 
         contentPane.add(difficultyLabel)
         contentPane.add(difficultyDropdown)
-        contentPane.add(calculateButton)
         contentPane.add(resultLabel)
     }
 
     private fun setupListeners() {
         pawnDropdown.addActionListener{
             updateRank1PiecesLabel()
+            calculatePoints()
         }
-        peasantDropdown.addActionListener{
+        peasantDropdown.addActionListener {
             updateRank1PiecesLabel()
+            calculatePoints()
         }
-        soldierDropdown.addActionListener{
+        soldierDropdown.addActionListener {
             updateRank1PiecesLabel()
+            calculatePoints()
         }
-        rookDropdown.addActionListener{
+        rookDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        bishopDropdown.addActionListener{
+        bishopDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        knightDropdown.addActionListener{
+        knightDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        catapultDropdown.addActionListener{
+        catapultDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        courtesanDropdown.addActionListener{
+        courtesanDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        chamberlainDropdown.addActionListener{
+        chamberlainDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        heraldDropdown.addActionListener{
+        heraldDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        inquisitorDropdown.addActionListener{
+        inquisitorDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        lancerDropdown.addActionListener{
+        lancerDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        pontiffDropdown.addActionListener{
+        pontiffDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        thiefDropdown.addActionListener{
+        thiefDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        towerDropdown.addActionListener{
+        towerDropdown.addActionListener {
             updateRank2PiecesLabel()
+            calculatePoints()
         }
-        calculateButton.addActionListener{
+        kingOrRegentDropdown.addActionListener {
+            calculatePoints()
+        }
+        difficultyDropdown.addActionListener {
             calculatePoints()
         }
     }
@@ -271,7 +286,6 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
         val pontiffValue = pontiffDropdown.selectedItem as Int
         val thiefValue = thiefDropdown.selectedItem as Int
         val towerValue = towerDropdown.selectedItem as Int
-
 
         val totalRank1Pieces = rookValue + bishopValue + knightValue + chamberlainValue +
                 catapultValue + courtesanValue + heraldValue + inquisitorValue + lancerValue +
