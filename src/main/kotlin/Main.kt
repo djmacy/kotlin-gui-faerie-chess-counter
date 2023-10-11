@@ -75,10 +75,10 @@ class FaerieChessCounterGUI : JFrame("Faerie Chess Counter") {
 
     private val difficultyLabel = JLabel("Difficulty: ")
     private val difficultyDropdown = createDropdown(listOf("Beginner", "Intermediate", "Advanced"))
-    private val beginnerPoints = 60
-    private val intermediatePoints = 65
-    private val advancedPoints = 70
-    private val resultLabel = JLabel("Total points: 16 Remaining Points: 44")
+    private val beginnerPoints = 65
+    private val intermediatePoints = 70
+    private val advancedPoints = 75
+    private val resultLabel = JLabel("Total points: 16 Remaining Points: 49")
     private val contentPane = JPanel()
 
     init {
